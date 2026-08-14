@@ -14,12 +14,14 @@ any identical target caption as correct.
 | 2,500 | 25.9% | 61.0% | 76.3% | 4 | 0.5421 |
 | 3,000 | 29.3% | 63.8% | 77.3% | **3** | 0.5462 |
 | 3,500 | 26.9% | 63.6% | 77.8% | **3** | 0.5652 |
-| 4,000 | **29.7%** | **65.3%** | **80.0%** | **3** | 0.5673 |
+| 4,000 | 29.7% | 65.3% | 80.0% | **3** | 0.5673 |
+| 4,500 | **30.5%** | **67.2%** | **80.3%** | **3** | 0.5895 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
-improve. Step 4,000 recovered that dip and is now the best audited checkpoint on
-all three primary recall metrics. The run is still not treated as monotonically
-improving.
+improve. Step 4,000 recovered that dip, and step 4,500 improved all three
+primary recall metrics again. Step 4,500 is an evaluation milestone rather than
+a saved checkpoint because full checkpoints are written every 1,000 steps. The
+run is still not treated as monotonically improving.
 
 The random duplicate-aware V2T R@1 baseline is 0.1124%. Machine-readable metric
 files live in [`artifacts/full_stage1`](../artifacts/full_stage1/). Full
