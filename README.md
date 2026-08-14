@@ -1,9 +1,11 @@
-# VL-JEPA-DROID-256
+# TaskWatch
 
-A strict Stage 1 video-language alignment baseline for DROID robot videos. The
-visual encoder is a frozen V-JEPA 2.1 ViT-G/16 2B, the predictor is initialized
-from the final eight Qwen3-4B transformer blocks, and the trainable language
-target is EmbeddingGemma-300M.
+Efficient video-based subtask completion verification for embodied agents.
+
+TaskWatch starts from a strict Stage 1 video-language alignment baseline for
+DROID robot videos. The visual encoder is a frozen V-JEPA 2.1 ViT-G/16 2B, the
+predictor is initialized from the final eight Qwen3-4B transformer blocks, and
+the trainable language target is EmbeddingGemma-300M.
 
 The reference 10,000-step full-DROID run is currently in progress. Audited
 metrics and their machine-readable artifacts are published in
@@ -73,8 +75,8 @@ access terms.
 ## Installation
 
 ```bash
-git clone <this-repository-url>
-cd vljepa_droid_256
+git clone https://github.com/EchO-NN/TaskWatch.git
+cd TaskWatch
 
 python3.11 -m venv .venv
 source .venv/bin/activate

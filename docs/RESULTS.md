@@ -1,4 +1,4 @@
-# Full-DROID Stage 1 results
+# TaskWatch full-DROID Stage 1 results
 
 The table below records the audited checkpoints from the ongoing 10,000-step
 reference run. Metrics use the fixed 1,000-episode validation set. Since 4% of

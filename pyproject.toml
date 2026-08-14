@@ -3,9 +3,9 @@ requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "vljepa-droid-256"
+name = "taskwatch"
 version = "0.1.0"
-description = "Strict VL-JEPA Stage-1 baseline on DROID RLDS"
+description = "Efficient video-based subtask completion verification for embodied agents"
 requires-python = ">=3.11,<3.13"
 dependencies = [
   "einops>=0.8",
