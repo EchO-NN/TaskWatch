@@ -21,11 +21,14 @@ caption as correct.
 | 5,000 | 32.8% | 70.0% | 82.8% | **3** | 0.5944 |
 | 5,500 | **34.4%** | **71.0%** | **83.4%** | **3** | 0.6042 |
 | 6,000 | **35.7%** | **72.1%** | **84.3%** | **2** | 0.6213 |
+| 6,500 | 33.9% | **72.9%** | **84.6%** | **2** | 0.6214 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
-6,000 improved all three primary recall metrics again. Step 6,000 is the current
-best evaluation milestone and latest saved checkpoint. Its checkpoint contains
+6,000 improved all three primary recall metrics again. At step 6,500, R@1
+fluctuated down by 1.8 percentage points while R@5 and R@10 improved by 0.8 and
+0.3 points, respectively; median rank stayed at 2. Step 6,000 is therefore the
+current best R@1 milestone and latest saved checkpoint. Its checkpoint contains
 the Predictor, Y-Encoder, three optimizer parameter groups with 409 states, and
 the constant scheduler at global step 6,000; it excludes the frozen V-JEPA
 encoder and Qwen token embedding. The 6.4 GiB checkpoint SHA-256 is
