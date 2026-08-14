@@ -1,0 +1,68 @@
+{
+  "engineering_acceptance_checks": {
+    "all_logged_metrics_finite": true,
+    "both_retrieval_r1_at_least_5x_random": true,
+    "embedding_std_never_below_1e-4": true,
+    "last_window_loss_below_first_window": true,
+    "last_window_positive_cosine_above_first_window": true
+  },
+  "gate_passed": true,
+  "retrieval": {
+    "final": {
+      "num_samples": 128,
+      "positive_cosine_mean": 0.40309104323387146,
+      "random_r1": 0.0078125,
+      "step": 1000,
+      "text_to_video_median_rank": 3.0,
+      "text_to_video_r1": 0.2578125,
+      "text_to_video_r10": 0.7890625,
+      "text_to_video_r5": 0.578125,
+      "video_to_text_median_rank": 4.0,
+      "video_to_text_r1": 0.1953125,
+      "video_to_text_r10": 0.765625,
+      "video_to_text_r5": 0.546875
+    },
+    "initial": {
+      "num_samples": 128,
+      "positive_cosine_mean": -0.004382604267448187,
+      "random_r1": 0.0078125,
+      "step": 0,
+      "text_to_video_median_rank": 69.0,
+      "text_to_video_r1": 0.0078125,
+      "text_to_video_r10": 0.0859375,
+      "text_to_video_r5": 0.046875,
+      "video_to_text_median_rank": 70.0,
+      "video_to_text_r1": 0.0234375,
+      "video_to_text_r10": 0.09375,
+      "video_to_text_r5": 0.0390625
+    },
+    "text_to_video_r1_over_random": 33.0,
+    "video_to_text_r1_over_random": 25.0
+  },
+  "threshold_note": "The loss/similarity direction, 1e-4 std floor, and 5x-random R@1 rules are explicit engineering acceptance criteria; the source spec states these requirements qualitatively.",
+  "train": {
+    "final_step": 1000,
+    "first_step": 1,
+    "first_window_mean": {
+      "embedding_std_pred": 0.011762644082773476,
+      "embedding_std_target": 0.011581947607919574,
+      "loss_total": 1.2415771484375,
+      "negative_cosine_mean": 0.011641200911253691,
+      "positive_cosine_mean": 0.04220733642578125
+    },
+    "gpu_peak_memory_gib": 10.784541130065918,
+    "last_window_mean": {
+      "embedding_std_pred": 0.019380014156922698,
+      "embedding_std_target": 0.019218765944242478,
+      "loss_total": 0.22591981291770935,
+      "negative_cosine_mean": 0.017848794581368566,
+      "positive_cosine_mean": 0.42666015625
+    },
+    "logged_rows": 101,
+    "loss_ratio_last_over_first": 0.1819619612055722,
+    "minimum_embedding_std_pred": 0.003893620101734996,
+    "minimum_embedding_std_target": 0.009992506355047226,
+    "samples_seen": 4000,
+    "window_size": 20
+  }
+}

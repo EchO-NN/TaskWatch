@@ -1,0 +1,80 @@
+experiment:
+  name: vljepa_droid_stage1_online_smoke
+  seed: 239
+
+paths:
+  rlds_dir: /data/nyz/datasets/droid/1.0.1
+  prepared_dir: /data/nyz/vljepa_droid_256/data/overfit_1k
+  feature_cache_dir: null
+  output_dir: /data/nyz/vljepa_droid_256/outputs/online_smoke
+  vjepa_repo: /data/nyz/repos/vjepa2
+  vjepa_checkpoint: /data/nyz/models/vjepa2.1-vitG-2B-384/vjepa2_1_vitG_384.pt
+  qwen_model: /data/nyz/models/Qwen3-4B
+  y_encoder_model: /data/nyz/models/embeddinggemma-300m
+
+data:
+  train_episodes: 8
+  validation_episodes: 8
+  camera_key: exterior_image_1_left
+  num_frames: 32
+  resolution: 256
+  resize_short_side: 292
+  short_episode_policy: drop
+  success_only: true
+  horizontal_flip: false
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+
+x_encoder:
+  source_commit: 204698b45b3712590f06245fbfba32d3be539812
+  hidden_dim: 1664
+  patch_size: 16
+  tubelet_size: 2
+  expected_tokens: 4096
+  frozen: true
+  eval_mode: true
+
+predictor:
+  source_revision: 1cfa9a7208912126459214e8b04321603b3df60c
+  hidden_dim: 2560
+  selected_layers: [28, 29, 30, 31, 32, 33, 34, 35]
+  shared_embedding_dim: 1536
+  causal_attention: false
+  use_cache: false
+  gradient_checkpointing: true
+
+y_encoder:
+  source_revision: 57c266a740f537b4dc058e1b0cda161fd15afa75
+  output_dim: 768
+  max_length: 512
+  trainable: true
+  lr_multiplier: 0.05
+
+loss:
+  temperature: 0.07
+  learnable_temperature: false
+  distributed_gather: true
+
+optimizer:
+  main_lr: 5.0e-5
+  y_encoder_lr: 2.5e-6
+  betas: [0.9, 0.95]
+  eps: 1.0e-8
+  weight_decay: 0.01
+  grad_clip_norm: 1.0
+
+training:
+  dtype: bfloat16
+  gradient_sync: chunked_gloo_allreduce
+  gradient_sync_chunk_elements: 8388608
+  local_batch_size: 2
+  num_workers: 1
+  max_steps: 2
+  log_every_steps: 1
+  eval_every_steps: 2
+  save_every_steps: 2
+  drop_last: true
+  use_feature_cache: false
+
+debug:
+  faulthandler_interval_seconds: 900

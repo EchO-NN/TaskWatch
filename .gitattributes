@@ -1,0 +1,3 @@
+# Matplotlib SVGs are generated evidence. Store them as binary artifacts so
+# Git does not produce noisy multi-thousand-line whitespace diffs.
+*.svg binary

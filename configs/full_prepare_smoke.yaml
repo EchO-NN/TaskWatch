@@ -1,0 +1,14 @@
+experiment:
+  name: vljepa_droid_full_prepare_smoke
+  seed: 239
+
+paths:
+  rlds_dir: /data/nyz/datasets/droid/1.0.1
+  prepared_dir: /data/nyz/vljepa_droid_256/data/full_prepare_smoke
+
+data:
+  train_episodes: null
+  validation_episodes: 2
+  camera_key: exterior_image_1_left
+  num_frames: 32
+  success_only: true

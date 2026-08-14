@@ -1,0 +1,14 @@
+{
+  "video_to_text_r1": 0.1953125,
+  "video_to_text_r5": 0.546875,
+  "video_to_text_r10": 0.765625,
+  "video_to_text_median_rank": 4.0,
+  "text_to_video_r1": 0.2578125,
+  "text_to_video_r5": 0.578125,
+  "text_to_video_r10": 0.7890625,
+  "text_to_video_median_rank": 3.0,
+  "positive_cosine_mean": 0.40309104323387146,
+  "random_r1": 0.0078125,
+  "num_samples": 128,
+  "step": 1000
+}
