@@ -1,9 +1,11 @@
 # TaskWatch full-DROID Stage 1 results
 
-The table below records the audited checkpoints from the ongoing 10,000-step
-reference run. Metrics use the fixed 1,000-episode validation set. Since 4% of
-the validation captions are duplicated, the primary Video-to-Text numbers count
-any identical target caption as correct.
+The table below records the audited checkpoints from the ongoing 20,000-step
+reference run. Step 10,000 is a stage boundary where the checkpoint is audited
+and then resumed with optimizer state intact. Metrics use the fixed
+1,000-episode validation set. Since 4% of the validation captions are
+duplicated, the primary Video-to-Text numbers count any identical target
+caption as correct.
 
 | Step | V2T R@1 | V2T R@5 | V2T R@10 | Median rank | Positive cosine |
 | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -32,5 +34,5 @@ checkpoints, DROID video tensors, and model weights are intentionally excluded
 from Git.
 
 This document is an interim record. It must not be interpreted as the final
-10,000-step result until the final checkpoint, retrieval JSON, and loss plots
+20,000-step result until the final checkpoint, retrieval JSON, and loss plots
 have been generated and audited.

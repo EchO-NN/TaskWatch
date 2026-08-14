@@ -7,10 +7,11 @@ DROID robot videos. The visual encoder is a frozen V-JEPA 2.1 ViT-G/16 2B, the
 predictor is initialized from the final eight Qwen3-4B transformer blocks, and
 the trainable language target is EmbeddingGemma-300M.
 
-The reference 10,000-step full-DROID run is currently in progress. Audited
-metrics and their machine-readable artifacts are published in
+The reference 20,000-step full-DROID run is currently in progress, with a
+stage audit and optimizer-state resume at step 10,000. Audited metrics and
+their machine-readable artifacts are published in
 [`docs/RESULTS.md`](docs/RESULTS.md); no final-result claim is made before the
-step-10,000 checkpoint and plots pass the same audit.
+step-20,000 checkpoint and plots pass the same audit.
 
 ## Model contract
 
@@ -183,12 +184,21 @@ torchrun --standalone --nproc-per-node=2 scripts/train_stage1.py \
   --config configs/train_stage1_droid_256.yaml
 ```
 
+After auditing the step-10,000 checkpoint, restore model and optimizer state
+and continue to the declared 20,000-step target:
+
+```bash
+torchrun --standalone --nproc-per-node=2 scripts/train_stage1.py \
+  --config configs/train_stage1_droid_256_20k.yaml \
+  --resume outputs/full_stage1/checkpoint_step_0010000.pt
+```
+
 Evaluate a checkpoint and plot the training trace:
 
 ```bash
 python scripts/eval_retrieval.py \
-  --config configs/train_stage1_droid_256.yaml \
-  --checkpoint outputs/full_stage1/checkpoint_step_0010000.pt
+  --config configs/train_stage1_droid_256_20k.yaml \
+  --checkpoint outputs/full_stage1/checkpoint_step_0020000.pt
 
 python scripts/plot_loss.py \
   --log outputs/full_stage1/train.jsonl \
