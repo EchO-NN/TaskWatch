@@ -20,13 +20,17 @@ caption as correct.
 | 4,500 | 30.5% | 67.2% | 80.3% | **3** | 0.5895 |
 | 5,000 | 32.8% | 70.0% | 82.8% | **3** | 0.5944 |
 | 5,500 | **34.4%** | **71.0%** | **83.4%** | **3** | 0.6042 |
+| 6,000 | **35.7%** | **72.1%** | **84.3%** | **2** | 0.6213 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
-5,500 improved all three primary recall metrics again. Step 5,500 is the current
-best evaluation milestone; step 5,000 remains the corresponding latest saved
-checkpoint because checkpoints are written every 1,000 steps. The run is still
-not treated as monotonically improving.
+6,000 improved all three primary recall metrics again. Step 6,000 is the current
+best evaluation milestone and latest saved checkpoint. Its checkpoint contains
+the Predictor, Y-Encoder, three optimizer parameter groups with 409 states, and
+the constant scheduler at global step 6,000; it excludes the frozen V-JEPA
+encoder and Qwen token embedding. The 6.4 GiB checkpoint SHA-256 is
+`5d287a29dfcaa57fec8387224e7922c77c054b9b3ef5d3f756f24e94a1da59cb`.
+The run is still not treated as monotonically improving.
 
 The random duplicate-aware V2T R@1 baseline is 0.1124%. Machine-readable metric
 files live in [`artifacts/full_stage1`](../artifacts/full_stage1/). Full
