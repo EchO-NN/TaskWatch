@@ -30,6 +30,7 @@ caption as correct.
 | 9,500 | 37.3% | 74.4% | **87.6%** | **2** | 0.6284 |
 | 10,000 | **38.2%** | 74.5% | 87.3% | **2** | **0.6469** |
 | 10,500 | 36.8% | 73.4% | 86.7% | **2** | 0.6261 |
+| 11,000 | **40.2%** | **76.7%** | **87.6%** | **2** | 0.6466 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -39,16 +40,16 @@ fluctuated down by 1.8 percentage points while R@5 and R@10 improved by 0.8 and
 R@1 points and set a new R@5 high of 73.0%, while R@10 edged down by 0.1 point.
 Step 7,500 then broke through the plateau and set new highs for R@1, R@5, and
 R@10. Step 8,000 pulled back by 1.6, 1.6, and 2.0 percentage points,
-respectively, despite a higher positive cosine. Step 7,500 remains the current
-best R@1 milestone. Step 8,500 recovered most of the R@1 pullback and set new
+respectively, despite a higher positive cosine. Step 7,500 remained the best
+R@1 milestone at that point. Step 8,500 recovered most of the R@1 pullback and set new
 R@5 and R@10 highs. Because the initial stage saves every 1,000 steps, neither
 half-step evaluation has a checkpoint. Step 9,000 then pulled back across all
 three recall cutoffs. Step 9,500 recovered most of that dip and set a narrowly
 higher R@10 of 87.6%, but has no checkpoint because the initial stage does not
 save half-step evaluations. Step 10,000 then set a new R@1 high of 38.2% and a
 new positive-cosine high of 0.6469, while R@5 and R@10 remained below their
-split bests. The split bests are therefore R@1 at step 10,000, R@5 at step
-8,500, and R@10 at step 9,500. The
+split bests. Step 11,000 subsequently set new R@1 and R@5 highs of 40.2% and
+76.7%, while tying the 87.6% R@10 high from step 9,500. The
 10,000-to-40,000 continuation saves every 500 steps to align checkpointing with
 evaluation. The audited step-10,000 checkpoint contains
 the Predictor, Y-Encoder, three optimizer parameter groups with 409 states, and
@@ -64,6 +65,10 @@ early plateau, not yet as evidence of persistent degradation. The audited
 step-10,500 checkpoint retains the same model and optimizer structure; its
 SHA-256 is
 `19bb5678dd405cbce0b0a8229f7de298a3f33334c0b89e58d4111c01ebf16b8d`.
+Step 11,000 then rebounded by 3.4, 3.3, and 0.9 points at the three recall
+cutoffs, indicating that the step-10,500 pullback was not persistent. Its
+audited checkpoint SHA-256 is
+`f2dcd7e3d9583e4051e7a6105f0c1d530e93dc2c4388792197c65befb576a41b`.
 
 The first-stage log contains 501 unique records from steps 1 through 10,000,
 with no duplicate steps or non-finite losses. Mean total loss fell from 0.9640
