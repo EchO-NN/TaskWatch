@@ -26,6 +26,7 @@ caption as correct.
 | 7,500 | **38.0%** | **73.8%** | **86.2%** | **2** | 0.6275 |
 | 8,000 | 36.4% | 72.2% | 84.2% | **2** | 0.6331 |
 | 8,500 | 37.5% | **75.1%** | **87.5%** | **2** | 0.6286 |
+| 9,000 | 35.9% | 72.9% | 86.8% | **2** | 0.6319 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -38,13 +39,15 @@ R@10. Step 8,000 pulled back by 1.6, 1.6, and 2.0 percentage points,
 respectively, despite a higher positive cosine. Step 7,500 remains the current
 best R@1 milestone. Step 8,500 recovered most of the R@1 pullback and set new
 R@5 and R@10 highs. Because the initial stage saves every 1,000 steps, neither
-half-step evaluation has a checkpoint; step 8,000 is the latest saved
-checkpoint. The 10,000-to-20,000 continuation saves every 500 steps to align
-checkpointing with evaluation. The step-8,000 checkpoint contains
+half-step evaluation has a checkpoint. Step 9,000 then pulled back across all
+three recall cutoffs, so the split bests remain at steps 7,500 and 8,500 while
+step 9,000 is the latest saved checkpoint. The 10,000-to-20,000 continuation
+saves every 500 steps to align checkpointing with evaluation. The step-9,000
+checkpoint contains
 the Predictor, Y-Encoder, three optimizer parameter groups with 409 states, and
-the constant scheduler at global step 8,000; it excludes the frozen V-JEPA
+the constant scheduler at global step 9,000; it excludes the frozen V-JEPA
 encoder and Qwen token embedding. The 6.4 GiB checkpoint SHA-256 is
-`84e59cebb43da82be73372375e899813501f51b4ef475907070aad35765ec4f6`.
+`0562040e70e5dac74a576b70172d4c92d9d98d204098230ffd20d98a8fcbe3fb`.
 The run is still not treated as monotonically improving.
 
 The random duplicate-aware V2T R@1 baseline is 0.1124%. Machine-readable metric
