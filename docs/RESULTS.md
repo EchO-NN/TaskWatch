@@ -29,6 +29,7 @@ caption as correct.
 | 9,000 | 35.9% | 72.9% | 86.8% | **2** | 0.6319 |
 | 9,500 | 37.3% | 74.4% | **87.6%** | **2** | 0.6284 |
 | 10,000 | **38.2%** | 74.5% | 87.3% | **2** | **0.6469** |
+| 10,500 | 36.8% | 73.4% | 86.7% | **2** | 0.6261 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -55,6 +56,14 @@ the constant scheduler at global step 10,000; it excludes the frozen V-JEPA
 encoder and Qwen token embedding. The 6.4 GiB checkpoint SHA-256 is
 `81d1b7b36a4b18030d6bb146f10aab378c2ddc88b64921c5550ad5d0cd54f864`.
 The run is still not treated as monotonically improving.
+
+The first 500-step continuation milestone pulled back from step 10,000 by 1.4,
+1.1, and 0.6 percentage points at R@1, R@5, and R@10, respectively. Its median
+rank remained 2. This single point is treated as evaluation noise or a possible
+early plateau, not yet as evidence of persistent degradation. The audited
+step-10,500 checkpoint retains the same model and optimizer structure; its
+SHA-256 is
+`19bb5678dd405cbce0b0a8229f7de298a3f33334c0b89e58d4111c01ebf16b8d`.
 
 The first-stage log contains 501 unique records from steps 1 through 10,000,
 with no duplicate steps or non-finite losses. Mean total loss fell from 0.9640
