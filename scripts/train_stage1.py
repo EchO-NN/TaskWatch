@@ -14,7 +14,7 @@ import numpy as np
 import torch
 import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel
-from torch.utils.data import DataLoader, DistributedSampler
+from torch.utils.data import BatchSampler, DataLoader, DistributedSampler
 
 from vljepa_droid.config import load_config
 from vljepa_droid.data.collate import collate_droid_samples
@@ -26,6 +26,7 @@ from vljepa_droid.models.factory import build_stage1_model
 from vljepa_droid.models.vljepa import VLJEPAModel
 from vljepa_droid.training.checkpoint import load_checkpoint, save_checkpoint
 from vljepa_droid.training.optimizer import build_optimizer
+from vljepa_droid.training.sampler import OffsetBatchSampler, resume_data_position
 
 
 def initialize_distributed() -> tuple[int, int, int, torch.device]:
@@ -174,13 +175,18 @@ def main() -> None:
         seed=int(config["experiment"]["seed"]),
         drop_last=bool(config["training"]["drop_last"]),
     )
+    batch_sampler = OffsetBatchSampler(
+        BatchSampler(
+            sampler,
+            batch_size=int(config["training"]["local_batch_size"]),
+            drop_last=bool(config["training"]["drop_last"]),
+        )
+    )
     loader = DataLoader(
         train_dataset,
-        batch_size=int(config["training"]["local_batch_size"]),
-        sampler=sampler,
+        batch_sampler=batch_sampler,
         num_workers=int(config["training"]["num_workers"]),
         pin_memory=True,
-        drop_last=bool(config["training"]["drop_last"]),
         collate_fn=collate_droid_samples,
     )
     if len(loader) == 0:
@@ -235,16 +241,33 @@ def main() -> None:
     eval_every = int(config["training"]["eval_every_steps"])
     save_every = int(config["training"]["save_every_steps"])
     global_batch = int(config["training"]["local_batch_size"]) * world_size
-    epoch = 0
+    steps_per_epoch = len(loader)
+    epoch, resume_batch = resume_data_position(global_step, steps_per_epoch)
     interval_start = time.perf_counter()
     interval_start_step = global_step
     torch.cuda.reset_peak_memory_stats(device)
 
     if global_step == 0:
         run_evaluation(model, validation_dataset, config, output_dir, 0, rank, device)
+    elif rank == 0:
+        print(
+            json.dumps(
+                {
+                    "resume": {
+                        "global_step": global_step,
+                        "sampler_epoch": epoch,
+                        "batch_in_epoch": resume_batch,
+                        "steps_per_epoch": steps_per_epoch,
+                    }
+                },
+                sort_keys=True,
+            ),
+            flush=True,
+        )
     while global_step < max_steps:
         sampler.set_epoch(epoch)
         train_dataset.set_epoch(epoch)
+        batch_sampler.set_start_batch(resume_batch)
         for batch in loader:
             if global_step >= max_steps:
                 break
@@ -340,6 +363,7 @@ def main() -> None:
                     config=config,
                 )
         epoch += 1
+        resume_batch = 0
 
     if rank == 0:
         final_path = output_dir / f"checkpoint_step_{global_step:07d}.pt"
