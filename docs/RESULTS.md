@@ -31,6 +31,10 @@ caption as correct.
 | 10,000 | **38.2%** | 74.5% | 87.3% | **2** | **0.6469** |
 | 10,500 | 36.8% | 73.4% | 86.7% | **2** | 0.6261 |
 | 11,000 | **40.2%** | **76.7%** | **87.6%** | **2** | 0.6466 |
+| 11,500 | 39.5% | **76.8%** | **88.7%** | **2** | **0.6567** |
+| 12,000 | 36.4% | 75.9% | 88.1% | **2** | 0.6517 |
+| 12,500 | 38.0% | 76.5% | 88.4% | **2** | 0.6469 |
+| 13,000 | 40.0% | **77.4%** | **89.8%** | **2** | 0.6552 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -69,6 +73,16 @@ Step 11,000 then rebounded by 3.4, 3.3, and 0.9 points at the three recall
 cutoffs, indicating that the step-10,500 pullback was not persistent. Its
 audited checkpoint SHA-256 is
 `f2dcd7e3d9583e4051e7a6105f0c1d530e93dc2c4388792197c65befb576a41b`.
+Step 11,500 raised R@5 and R@10 again before a step-12,000 pullback. Step 12,500
+partially recovered, and step 13,000 established new R@5 and R@10 highs of
+77.4% and 89.8%, while its 40.0% R@1 remained within 0.2 points of the step-11,000
+high. This confirms a noisy upward trend rather than monotonic improvement.
+The audited checkpoint SHA-256 values are:
+
+- step 11,500: `73392ebf7a7d4eecfc0697f77bbe580d198f562251c3a136a636a14db83a5cde`
+- step 12,000: `0814ff7ec1fb5e644fea38352bfec31a2e44d94751febb8bf3ecb078f0d00a12`
+- step 12,500: `bb5c5b9286db022cf6bcbc5d36f61dcdd2abc6167425943ba5a96c65af3156e9`
+- step 13,000: `99b7c00431035b80922918d42ca253b3edcb3f5a6e09f396ec1b5ffd924ec6e1`
 
 The first-stage log contains 501 unique records from steps 1 through 10,000,
 with no duplicate steps or non-finite losses. Mean total loss fell from 0.9640

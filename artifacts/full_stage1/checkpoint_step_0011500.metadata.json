@@ -1,0 +1,14 @@
+{
+  "global_step": 11500,
+  "x_encoder": "V-JEPA-2.1-ViT-G-2B",
+  "input_resolution": 256,
+  "num_frames": 32,
+  "patch_size": 16,
+  "tubelet_size": 2,
+  "visual_tokens": 4096,
+  "predictor_base": "Qwen/Qwen3-4B",
+  "predictor_layers": [28, 29, 30, 31, 32, 33, 34, 35],
+  "shared_embedding_dim": 1536,
+  "y_encoder": "google/embeddinggemma-300m",
+  "loss": "bidirectional_infonce"
+}
