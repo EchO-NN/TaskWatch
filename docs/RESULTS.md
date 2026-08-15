@@ -35,6 +35,10 @@ caption as correct.
 | 12,000 | 36.4% | 75.9% | 88.1% | **2** | 0.6517 |
 | 12,500 | 38.0% | 76.5% | 88.4% | **2** | 0.6469 |
 | 13,000 | 40.0% | **77.4%** | **89.8%** | **2** | 0.6552 |
+| 13,500 | 40.7% | **78.5%** | 88.6% | **2** | 0.6505 |
+| 14,000 | 40.1% | 76.6% | 89.4% | **2** | **0.6588** |
+| 14,500 | **42.4%** | **78.5%** | **90.8%** | **2** | 0.6566 |
+| 15,000 | 41.7% | **78.8%** | 88.9% | **2** | **0.6625** |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -83,6 +87,18 @@ The audited checkpoint SHA-256 values are:
 - step 12,000: `0814ff7ec1fb5e644fea38352bfec31a2e44d94751febb8bf3ecb078f0d00a12`
 - step 12,500: `bb5c5b9286db022cf6bcbc5d36f61dcdd2abc6167425943ba5a96c65af3156e9`
 - step 13,000: `99b7c00431035b80922918d42ca253b3edcb3f5a6e09f396ec1b5ffd924ec6e1`
+
+Step 13,500 set another R@5 high before step 14,000 exchanged some R@5 for a
+higher R@10. Step 14,500 then established new R@1 and R@10 highs of 42.4% and
+90.8%. Step 15,000 retained a 41.7% R@1 and set a new 78.8% R@5 high, although
+R@10 pulled back to 88.9%. The best checkpoint therefore depends on the target
+operating point: step 14,500 for R@1/R@10, or step 15,000 for R@5. Audited
+checkpoint SHA-256 values are:
+
+- step 13,500: `23155a8b25a692ed0776e2a8de56f96c0676b5d88925bfab7fe4ae0d0faef1ae`
+- step 14,000: `7465685a4653c065340f85f456a5b24e35bfed578693e837c1cdd48c3d011682`
+- step 14,500: `866abd5baba1af26f95c98d14f4c9c88237741e68155cbf73d16c7b969c41728`
+- step 15,000: `fb9d0819962c06754081797ef6fbe795348cc110c3b59f6ef89ce37246d65da2`
 
 The first-stage log contains 501 unique records from steps 1 through 10,000,
 with no duplicate steps or non-finite losses. Mean total loss fell from 0.9640
