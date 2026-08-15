@@ -1,6 +1,6 @@
 # TaskWatch full-DROID Stage 1 results
 
-The table below records the audited checkpoints from the ongoing 20,000-step
+The table below records the audited checkpoints from the ongoing 40,000-step
 reference run. Step 10,000 is a stage boundary where the checkpoint is audited
 and then resumed with optimizer state intact. Metrics use the fixed
 1,000-episode validation set. Since 4% of the validation captions are
@@ -48,7 +48,7 @@ save half-step evaluations. Step 10,000 then set a new R@1 high of 38.2% and a
 new positive-cosine high of 0.6469, while R@5 and R@10 remained below their
 split bests. The split bests are therefore R@1 at step 10,000, R@5 at step
 8,500, and R@10 at step 9,500. The
-10,000-to-20,000 continuation saves every 500 steps to align checkpointing with
+10,000-to-40,000 continuation saves every 500 steps to align checkpointing with
 evaluation. The audited step-10,000 checkpoint contains
 the Predictor, Y-Encoder, three optimizer parameter groups with 409 states, and
 the constant scheduler at global step 10,000; it excludes the frozen V-JEPA
@@ -68,5 +68,5 @@ checkpoints, DROID video tensors, and model weights are intentionally excluded
 from Git.
 
 This document is an interim record. It must not be interpreted as the final
-20,000-step result until the final checkpoint, retrieval JSON, and loss plots
+40,000-step result until the final checkpoint, retrieval JSON, and loss plots
 have been generated and audited.
