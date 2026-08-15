@@ -28,6 +28,7 @@ caption as correct.
 | 8,500 | 37.5% | **75.1%** | **87.5%** | **2** | 0.6286 |
 | 9,000 | 35.9% | 72.9% | 86.8% | **2** | 0.6319 |
 | 9,500 | 37.3% | 74.4% | **87.6%** | **2** | 0.6284 |
+| 10,000 | **38.2%** | 74.5% | 87.3% | **2** | **0.6469** |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -42,17 +43,24 @@ best R@1 milestone. Step 8,500 recovered most of the R@1 pullback and set new
 R@5 and R@10 highs. Because the initial stage saves every 1,000 steps, neither
 half-step evaluation has a checkpoint. Step 9,000 then pulled back across all
 three recall cutoffs. Step 9,500 recovered most of that dip and set a narrowly
-higher R@10 of 87.6%; the split bests are therefore R@1 at step 7,500, R@5 at
-step 8,500, and R@10 at step 9,500. Step 9,000 remains the latest saved
-checkpoint because the initial stage does not save half-step evaluations. The
+higher R@10 of 87.6%, but has no checkpoint because the initial stage does not
+save half-step evaluations. Step 10,000 then set a new R@1 high of 38.2% and a
+new positive-cosine high of 0.6469, while R@5 and R@10 remained below their
+split bests. The split bests are therefore R@1 at step 10,000, R@5 at step
+8,500, and R@10 at step 9,500. The
 10,000-to-20,000 continuation saves every 500 steps to align checkpointing with
-evaluation. The step-9,000
-checkpoint contains
+evaluation. The audited step-10,000 checkpoint contains
 the Predictor, Y-Encoder, three optimizer parameter groups with 409 states, and
-the constant scheduler at global step 9,000; it excludes the frozen V-JEPA
+the constant scheduler at global step 10,000; it excludes the frozen V-JEPA
 encoder and Qwen token embedding. The 6.4 GiB checkpoint SHA-256 is
-`0562040e70e5dac74a576b70172d4c92d9d98d204098230ffd20d98a8fcbe3fb`.
+`81d1b7b36a4b18030d6bb146f10aab378c2ddc88b64921c5550ad5d0cd54f864`.
 The run is still not treated as monotonically improving.
+
+The first-stage log contains 501 unique records from steps 1 through 10,000,
+with no duplicate steps or non-finite losses. Mean total loss fell from 0.9640
+over the first 50 records to 0.1564 over the last 50 records.
+
+![Loss and cosine traces through step 10,000](../artifacts/full_stage1/loss_step_0010000.png)
 
 The random duplicate-aware V2T R@1 baseline is 0.1124%. Machine-readable metric
 files live in [`artifacts/full_stage1`](../artifacts/full_stage1/). Full

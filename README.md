@@ -51,6 +51,10 @@ query-free.
 - Filter: successful episodes only; short episodes are dropped.
 - Reference split: 73,602 train episodes and a deterministic 1,000-episode
   validation set from 74,602 eligible episodes.
+- Training language: 220,806 non-empty native DROID annotation slots (three
+  per episode), comprising 121,810 unique strings. One of the episode's three
+  annotations is selected on each training access. The 128 validation episodes
+  in `stage1_overfit_1k.yaml` belong only to the development overfit gate.
 - Validation captions: 960 unique strings; duplicate-aware Video-to-Text metrics
   count any identical target caption as correct.
 
