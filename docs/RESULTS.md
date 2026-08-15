@@ -25,6 +25,7 @@ caption as correct.
 | 7,000 | 34.7% | **73.0%** | 84.5% | **2** | 0.6096 |
 | 7,500 | **38.0%** | **73.8%** | **86.2%** | **2** | 0.6275 |
 | 8,000 | 36.4% | 72.2% | 84.2% | **2** | 0.6331 |
+| 8,500 | 37.5% | **75.1%** | **87.5%** | **2** | 0.6286 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -35,8 +36,11 @@ R@1 points and set a new R@5 high of 73.0%, while R@10 edged down by 0.1 point.
 Step 7,500 then broke through the plateau and set new highs for R@1, R@5, and
 R@10. Step 8,000 pulled back by 1.6, 1.6, and 2.0 percentage points,
 respectively, despite a higher positive cosine. Step 7,500 remains the current
-best evaluation milestone, while step 8,000 is the latest saved checkpoint. The
-checkpoint contains
+best R@1 milestone. Step 8,500 recovered most of the R@1 pullback and set new
+R@5 and R@10 highs. Because the initial stage saves every 1,000 steps, neither
+half-step evaluation has a checkpoint; step 8,000 is the latest saved
+checkpoint. The 10,000-to-20,000 continuation saves every 500 steps to align
+checkpointing with evaluation. The step-8,000 checkpoint contains
 the Predictor, Y-Encoder, three optimizer parameter groups with 409 states, and
 the constant scheduler at global step 8,000; it excludes the frozen V-JEPA
 encoder and Qwen token embedding. The 6.4 GiB checkpoint SHA-256 is
