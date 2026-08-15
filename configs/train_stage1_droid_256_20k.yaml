@@ -72,7 +72,7 @@ training:
   max_steps: 20000
   log_every_steps: 20
   eval_every_steps: 500
-  save_every_steps: 1000
+  save_every_steps: 500
   drop_last: true
   use_feature_cache: false
 

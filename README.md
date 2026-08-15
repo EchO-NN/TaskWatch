@@ -193,6 +193,9 @@ torchrun --standalone --nproc-per-node=2 scripts/train_stage1.py \
   --resume outputs/full_stage1/checkpoint_step_0010000.pt
 ```
 
+The continuation config saves at every 500-step evaluation milestone so a
+transient best retrieval result always has a corresponding checkpoint.
+
 Evaluate a checkpoint and plot the training trace:
 
 ```bash
