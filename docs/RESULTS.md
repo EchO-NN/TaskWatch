@@ -27,6 +27,7 @@ caption as correct.
 | 8,000 | 36.4% | 72.2% | 84.2% | **2** | 0.6331 |
 | 8,500 | 37.5% | **75.1%** | **87.5%** | **2** | 0.6286 |
 | 9,000 | 35.9% | 72.9% | 86.8% | **2** | 0.6319 |
+| 9,500 | 37.3% | 74.4% | **87.6%** | **2** | 0.6284 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -40,9 +41,12 @@ respectively, despite a higher positive cosine. Step 7,500 remains the current
 best R@1 milestone. Step 8,500 recovered most of the R@1 pullback and set new
 R@5 and R@10 highs. Because the initial stage saves every 1,000 steps, neither
 half-step evaluation has a checkpoint. Step 9,000 then pulled back across all
-three recall cutoffs, so the split bests remain at steps 7,500 and 8,500 while
-step 9,000 is the latest saved checkpoint. The 10,000-to-20,000 continuation
-saves every 500 steps to align checkpointing with evaluation. The step-9,000
+three recall cutoffs. Step 9,500 recovered most of that dip and set a narrowly
+higher R@10 of 87.6%; the split bests are therefore R@1 at step 7,500, R@5 at
+step 8,500, and R@10 at step 9,500. Step 9,000 remains the latest saved
+checkpoint because the initial stage does not save half-step evaluations. The
+10,000-to-20,000 continuation saves every 500 steps to align checkpointing with
+evaluation. The step-9,000
 checkpoint contains
 the Predictor, Y-Encoder, three optimizer parameter groups with 409 states, and
 the constant scheduler at global step 9,000; it excludes the frozen V-JEPA

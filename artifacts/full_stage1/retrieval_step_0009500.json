@@ -1,0 +1,21 @@
+{
+  "video_to_text_r1": 0.3630000054836273,
+  "video_to_text_r5": 0.7419999837875366,
+  "video_to_text_r10": 0.8759999871253967,
+  "video_to_text_median_rank": 2.0,
+  "text_to_video_r1": 0.3889999985694885,
+  "text_to_video_r5": 0.7570000290870667,
+  "text_to_video_r10": 0.8679999709129333,
+  "text_to_video_median_rank": 2.0,
+  "positive_cosine_mean": 0.6283962726593018,
+  "random_r1": 0.001,
+  "num_samples": 1000,
+  "video_to_text_any_matching_caption_r1": 0.37299999594688416,
+  "video_to_text_any_matching_caption_r5": 0.7440000176429749,
+  "video_to_text_any_matching_caption_r10": 0.8759999871253967,
+  "video_to_text_any_matching_caption_median_rank": 2.0,
+  "video_to_text_any_matching_caption_random_r1": 0.0011240000603720546,
+  "unique_target_texts": 960,
+  "duplicate_target_text_fraction": 0.040000000000000036,
+  "step": 9500
+}
