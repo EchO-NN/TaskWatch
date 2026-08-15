@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader
 
 from vljepa_droid.data.collate import collate_droid_samples
 from vljepa_droid.data.dataset import PreparedDroidDataset
-from vljepa_droid.evaluation.retrieval import compute_retrieval_metrics
+from vljepa_droid.evaluation.retrieval import compute_retrieval_metrics, ranked_text_examples
 from vljepa_droid.models.vljepa import VLJEPAModel
 
 
@@ -20,7 +20,8 @@ def evaluate_model(
     device: torch.device,
     batch_size: int,
     num_workers: int,
-) -> dict[str, float]:
+    ranked_example_count: int = 0,
+) -> dict[str, object]:
     loader = DataLoader(
         dataset,
         batch_size=batch_size,
@@ -34,6 +35,7 @@ def evaluate_model(
     predictions: list[torch.Tensor] = []
     targets: list[torch.Tensor] = []
     target_texts: list[str] = []
+    episode_ids: list[str] = []
     for batch in loader:
         inputs = {}
         if "visual_tokens" in batch:
@@ -45,16 +47,28 @@ def evaluate_model(
         predictions.append(output.z_pred.cpu())
         targets.append(output.z_target.cpu())
         target_texts.extend(batch["target_text"])
+        episode_ids.extend(batch["episode_id"])
     if was_training:
         model.train()
-    return compute_retrieval_metrics(
-        torch.cat(predictions),
-        torch.cat(targets),
+    prediction_tensor = torch.cat(predictions)
+    target_tensor = torch.cat(targets)
+    metrics: dict[str, object] = compute_retrieval_metrics(
+        prediction_tensor,
+        target_tensor,
         target_texts=target_texts,
     )
+    if ranked_example_count:
+        metrics["video_to_text_examples"] = ranked_text_examples(
+            prediction_tensor,
+            target_tensor,
+            target_texts=target_texts,
+            episode_ids=episode_ids,
+            count=ranked_example_count,
+        )
+    return metrics
 
 
-def write_retrieval_metrics(path: str | Path, metrics: dict[str, float]) -> None:
+def write_retrieval_metrics(path: str | Path, metrics: dict[str, object]) -> None:
     output_path = Path(path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(metrics, indent=2) + "\n", encoding="utf-8")

@@ -1,0 +1,67 @@
+{
+  "step": 16000,
+  "query_index": 0,
+  "query_target_text": "Move the toy bottle from the table to the plate rack on the toy sink",
+  "candidates": [
+    {
+      "rank": 1,
+      "text": "Put the water bottle in the coffee cup.",
+      "cosine": 0.6138529777526855,
+      "is_identical_target_text": false
+    },
+    {
+      "rank": 2,
+      "text": "Move the toy bottle from the table to the plate rack on the toy sink",
+      "cosine": 0.603136420249939,
+      "is_identical_target_text": true
+    },
+    {
+      "rank": 3,
+      "text": "Throw the bottle in the empty bin",
+      "cosine": 0.4978378117084503,
+      "is_identical_target_text": false
+    },
+    {
+      "rank": 4,
+      "text": "Put the orange ketchup bottle in the blue cup",
+      "cosine": 0.47624316811561584,
+      "is_identical_target_text": false
+    },
+    {
+      "rank": 5,
+      "text": "Put the yellow cube inside the cup",
+      "cosine": 0.4629543125629425,
+      "is_identical_target_text": false
+    },
+    {
+      "rank": 6,
+      "text": "Pick up the bottle with the brown liquid and place it on the rack",
+      "cosine": 0.45893892645835876,
+      "is_identical_target_text": false
+    },
+    {
+      "rank": 7,
+      "text": "Pick up the yellow block from the table and put it in the light blue cup.",
+      "cosine": 0.45810213685035706,
+      "is_identical_target_text": false
+    },
+    {
+      "rank": 8,
+      "text": "Put the yellow cup on the dishrack.",
+      "cosine": 0.45442062616348267,
+      "is_identical_target_text": false
+    },
+    {
+      "rank": 9,
+      "text": "Put the bottle on the right inside the clear container",
+      "cosine": 0.44027984142303467,
+      "is_identical_target_text": false
+    },
+    {
+      "rank": 10,
+      "text": "Take the yellow block from the table and place it in the blue cup",
+      "cosine": 0.43575602769851685,
+      "is_identical_target_text": false
+    }
+  ]
+}

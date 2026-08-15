@@ -19,6 +19,7 @@ def main() -> None:
     parser.add_argument("--config", required=True)
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument("--output")
+    parser.add_argument("--ranked-examples", type=int, default=0)
     args = parser.parse_args()
     config = load_config(args.config)
     device = torch.device("cuda:0")
@@ -43,6 +44,7 @@ def main() -> None:
         device=device,
         batch_size=int(config["training"]["local_batch_size"]),
         num_workers=int(config["training"]["num_workers"]),
+        ranked_example_count=args.ranked_examples,
     )
     metrics["step"] = step
     output = (

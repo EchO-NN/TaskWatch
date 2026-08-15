@@ -40,6 +40,7 @@ caption as correct.
 | 14,500 | **42.4%** | **78.5%** | **90.8%** | **2** | 0.6566 |
 | 15,000 | 41.7% | **78.8%** | 88.9% | **2** | **0.6625** |
 | 15,500 | **42.9%** | 76.8% | 88.0% | **2** | 0.6624 |
+| 16,000 | 41.6% | **78.8%** | 89.3% | **2** | 0.6611 |
 
 At step 3,500, R@1 fluctuated down while R@10 and positive cosine continued to
 improve. Step 4,000 recovered that dip, and subsequent milestones through step
@@ -105,6 +106,20 @@ Step 15,500 established a new R@1 high of 42.9%, while R@5 and R@10 pulled
 back to 76.8% and 88.0%. This further separates the best checkpoint by target
 metric. Its audited checkpoint SHA-256 is
 `42d5f09a70c964ba10ce48fc57c1c24d0aabf25092c07b43fc7a1de6748fd81b`.
+
+Step 16,000 retained a 41.6% R@1, tied the 78.8% R@5 high, and recovered R@10
+to 89.3%. Its audited checkpoint SHA-256 is
+`3ba9ae5a0639f941c884424e46da678011019a180ad6ef445b10b0a388c29d29`.
+An independent evaluation of the same checkpoint measured a mean cosine of
+0.5903 across each video's ten highest-scoring captions. The rank-10 cosine
+averaged 0.5017, with median 0.4867 and range 0.2881--0.7803; the rank-1 mean
+was 0.7192 and the ground-truth-pair mean was 0.6611. The full rank-wise values
+are stored in `retrieval_step_0016000_cosine_diagnostics.json`.
+A representative saved query placed its exact bottle-to-dishrack target at
+rank 2 (cosine 0.6031), behind a bottle-to-cup distractor (0.6139). Most of its
+top ten retained the move/place action template and shared bottle, cup,
+container, or rack concepts, while often missing the exact destination. The
+full list is stored in `ranked_example_step_0016000.json`.
 
 The first-stage log contains 501 unique records from steps 1 through 10,000,
 with no duplicate steps or non-finite losses. Mean total loss fell from 0.9640
